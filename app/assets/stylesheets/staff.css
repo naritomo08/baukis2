@@ -3,4 +3,5 @@
  *= require_tree ./staff
  *= require jquery-ui-dist/jquery-ui
  *= require tag-it/css/jquery.tagit
+ *= require tag-it/css/tagit.ui-zendesk
  */
