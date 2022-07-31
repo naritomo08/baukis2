@@ -131,5 +131,14 @@ rails s -b 0.0.0.0
 
 # 本番データ投入
 
-administratorテーブルに対し、以下のデータを入れる。
+```
+adminerを使用して、
+baukis_production/administratorテーブルに対し、以下のデータを入れる。
 
+email:hanako@example.com
+hashed_passsword:$2a$12$PSYJCyRhFsJ6hAu/q1LXh.u3Neq3Zi6LGiO7KF4qwA9IoGlz7.VDC
+created_at:now
+updated_at:now
+
+管理者画面にログインできることを確認する。
+```
