@@ -49,11 +49,15 @@ Baukis2 は企業向けの顧客管理システム（Ruby on Rails 学習用サ�
 
 ## アカウント
 ```
-ユーザー権限
+顧客
+ito.ichiro@example.jp
+password
+
+職員
 taro@example.com
 password
 
-管理者権限
+管理者
 hanako@example.com
 foobar
 ```
@@ -71,7 +75,7 @@ rails s -b 0.0.0.0
 
 ## プリコンパイル(本番環境反映)
 ```
-bin/rails db:create RAILS_ENV=production
+bin/rails db:reset RAILS_ENV=production
 bin/rails assets:precompile RAILS_ENV=production
 ```
 
@@ -115,11 +119,17 @@ rails db:reset
 ```
 dockerをあらかじめ立ち上げていて、dockerフォルダにいること。
 cd apps
-git clone -b books2-naritomo-kansei git@github.com:naritomo08/baukis2.git
+git clone -b book2-naritomo-kansei git@github.com:naritomo08/baukis2.git
 docker-compose exec web bash
 cd baukis2
-bundle update
+bundle install
 yarn
 rails db:reset
 rails s -b 0.0.0.0
+サイト表示ができていることを確認する。
 ```
+
+# 本番データ投入
+
+administratorテーブルに対し、以下のデータを入れる。
+
