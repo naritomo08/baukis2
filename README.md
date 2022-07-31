@@ -34,7 +34,7 @@ Baukis2 は企業向けの顧客管理システム（Ruby on Rails 学習用サ�
 
 ## システムの起動と終了
 
-* `bin/rails s` コマンドを実行するとシステムが起動します。
+* `rails s -b 0.0.0.0` コマンドを実行するとシステムが起動します。
 * Ctrl-C を入力するとシステムが終了します。
 
 ## システムの利用
@@ -43,3 +43,83 @@ Baukis2 は企業向けの顧客管理システム（Ruby on Rails 学習用サ�
   * http://baukis2.example.com:3000 -- 職員向けサイト
   * http://baukis2.example.com:3000/admin -- 管理者向けサイト
   * http://example.com:3000/mypage -- 顧客向けサイト
+
+
+# 補足事項
+
+## アカウント
+```
+ユーザー権限
+taro@example.com
+password
+
+管理者権限
+hanako@example.com
+foobar
+```
+
+## apサーバログイン
+```
+docker-compose exec web bash
+cd baukis2
+```
+
+## webサービス立ち上げ(開発モード)
+```
+rails s -b 0.0.0.0
+```
+
+## プリコンパイル(本番環境反映)
+```
+bin/rails db:create RAILS_ENV=production
+bin/rails assets:precompile RAILS_ENV=production
+```
+
+## 本番環境マスターキー確認
+```
+EDITOR=vim bin/rails credentials:edit
+
+エラーが出る場合
+rm config/credentials.yml.enc config/master.key
+EDITOR=vim bin/rails credentials:edit
+```
+
+## webサービス立ち上げ(本番モード)
+```
+export RAILS_SERVE_STATIC_FILES=1
+rails s -e production -b 0.0.0.0
+```
+
+## サービス立ち上げ時、"warning Integrity check: Flags don't match"が出る場合
+```
+yarn upgrade
+```
+
+## サービス立ち上げ時、"Could not find *** in any of the sources”が出る場合
+```
+bundle install
+```
+
+## dbコマンド
+
+```
+rails db:setup
+rails db:migrate
+rails db:migrate:reset
+rails db:seed
+rails db:reset
+```
+
+## 初回のシステム立ち上げ方
+
+```
+dockerをあらかじめ立ち上げていて、dockerフォルダにいること。
+cd apps
+git clone -b books2-naritomo-kansei git@github.com:naritomo08/baukis2.git
+docker-compose exec web bash
+cd baukis2
+bundle update
+yarn
+rails db:reset
+rails s -b 0.0.0.0
+```
